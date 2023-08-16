@@ -11,14 +11,14 @@ defineProps({
     canRegister: {
         type: Boolean,
     },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
+    // laravelVersion: {
+    //     type: String,
+    //     required: true,
+    // },
+    // phpVersion: {
+    //     type: String,
+    //     required: true,
+    // },
 });
 </script>
 
@@ -27,9 +27,12 @@ defineProps({
         class="m-0 font-sans antialiased font-normal bg-gray-500 text-start text-base leading-default text-slate-500"
     >
         <Head title="System developer" />
-        <HeaderExternal />
-        <NavLogin canLogin="canLogin" canRegister="canRegister" />
         <!-- component -->
+        <HeaderExternal>
+            <template v-slot:buttonState>
+                <NavLogin canLogin="canLogin" canRegister="canRegister" />
+            </template>
+        </HeaderExternal>
         <!-- component -->
         <div class="p-6 py-12">
             <div class="container mx-auto">
