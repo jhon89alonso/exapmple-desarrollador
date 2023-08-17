@@ -193,11 +193,11 @@ const openAsideBarLayout = () => {
                             <button
                                 @click.prevent="openAsideBarLayout"
                                 class="lg:inline-block p-3 bg-black text-white"
-                            >
+                            ><i class="fas fa-bars fa-spin fa-lg"></i>
                                 menu
                             </button>
                         </div>
-                        <div>02</div>
+                       
                         <div><slot name="header" /></div>
                     </div>
                 </div>

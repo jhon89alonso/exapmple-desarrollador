@@ -2,20 +2,24 @@
     <aside class="left-0">
         <div
             v-show="menuAside"
-            class="bg-gray-400 lg:py-2 lg:pl-2 w-60 fixed z-40 top-0 h-screen transition-position overflow-hidden"
+            class="bg-gray-50 lg:py-2 lg:pl-2 w-60 fixed z-40 top-0 h-screen border-r-4 border-indigo-500 transition-position overflow-hidden"
         >
-            <div class="flex flex-row h-14 items-center justify-between">
+            <div class="flex flex-row h-14 items-center justify-between px-4">
                 <div
-                    class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0"
+                    class="text-center p-1 flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0"
                 >
                     <b class="font-black">Menu</b>
                 </div>
                 <button
                     @click="closeAsideBar"
-                    class="lg:inline-block p-3 bg-black text-white"
+                    class="lg:inline-block  rounded-md  text-black"
                 >
-                    close
+                <i class="far fa-window-close fa-2x"></i>
                 </button>
+            </div>
+
+            <div>
+                <ListMenu />
             </div>
         </div>
     </aside>
@@ -23,6 +27,7 @@
 
 <script setup>
 import { ref, defineEmits, defineExpose } from "vue";
+import ListMenu from "./ListMenu.vue";
 
 const emit = defineEmits(["open-aside-bar", "close-aside-bar"]);
 const menuAside = ref(false);
