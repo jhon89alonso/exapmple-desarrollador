@@ -7,6 +7,7 @@ import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
 import Menu from "./partials/menuAside/Menu.vue";
+import SearchForm from "@/components/SearchForm.vue";
 
 const showingNavigationDropdown = ref(false);
 
@@ -20,6 +21,10 @@ const openAsideBarLayout = () => {
         hijoRef.value.openAsideBar();
     }
 };
+
+const notShowAsideBar = () => {
+    showAsideBar.value = false;
+};
 </script>
 
 <template>
@@ -29,7 +34,7 @@ const openAsideBarLayout = () => {
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex">
+                        <div class="flex" :class="showAsideBar ? `ml-60` : ``">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
@@ -189,23 +194,25 @@ const openAsideBarLayout = () => {
             <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between ...">
-                        <div>
-                            <button
-                                @click.prevent="openAsideBarLayout"
-                                class="lg:inline-block p-3 bg-black text-white"
-                            ><i class="fas fa-bars fa-spin fa-lg"></i>
-                                menu
-                            </button>
-                        </div>
-                       
+                        <button
+                            @click.prevent="openAsideBarLayout"
+                            class="lg:inline-block p-2 bg-black rounded-md text-white"
+                        >
+                            <i class="fas fa-bars fa-spin fa-lg"></i>
+                            menu
+                        </button>
+                        <div><SearchForm /> </div>
                         <div><slot name="header" /></div>
                     </div>
                 </div>
             </header>
             <!-- showAsideBar -->
-            <Menu ref="hijoRef" />
+            <Menu ref="hijoRef" :notShowAsideBar="notShowAsideBar" />
             <!-- Page Content -->
-            <main>
+            <main
+                class="pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50"
+                :class="showAsideBar ? `ml-60` : `lg:ml-0`"
+            >
                 <slot />
             </main>
         </div>

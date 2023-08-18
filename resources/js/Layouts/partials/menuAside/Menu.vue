@@ -12,9 +12,9 @@
                 </div>
                 <button
                     @click="closeAsideBar"
-                    class="lg:inline-block  rounded-md  text-black"
+                    class="lg:inline-block rounded-md text-black"
                 >
-                <i class="far fa-window-close fa-2x"></i>
+                    <i class="far fa-window-close fa-2x"></i>
                 </button>
             </div>
 
@@ -29,6 +29,8 @@
 import { ref, defineEmits, defineExpose } from "vue";
 import ListMenu from "./ListMenu.vue";
 
+const props = defineProps(["notShowAsideBar"]);
+
 const emit = defineEmits(["open-aside-bar", "close-aside-bar"]);
 const menuAside = ref(false);
 
@@ -38,9 +40,10 @@ const openAsideBar = (event) => {
 };
 const closeAsideBar = (event) => {
     menuAside.value = false;
+    props.notShowAsideBar()
     emit("close-aside-bar", event);
 };
 
 // Exporta el método openAsideBar para que esté disponible en el componente padre
-defineExpose({menuAside, openAsideBar});
+defineExpose({ menuAside, openAsideBar });
 </script>
