@@ -36,3 +36,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::group(['middleware' => 'auth', 'prefix' => 'welcome'], function () {
+    Route::group(['prefix' => 'admin'], function () {
+        Route::resource('users', UserController::class);
+    });
+});

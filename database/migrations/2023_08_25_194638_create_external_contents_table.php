@@ -18,12 +18,12 @@ return new class extends Migration
             $table->tinyInteger('content_type')->comment('1:Contenedor,2:contenido simple,3:video,4:image,5:audio,6:pdf,7:enlace externo');
             $table->integer('content_father')->nullable()->comment('id, solo aplica para contenido tipo contenedor en el que sera contenido padre');
             $table->integer('content_grandson')->nullable()->comment('id, solo aplica para contenido tipo contenedor simples en el que sera asignado el id del contenido abuelo');
-            $table->smallInteger('content_colums')->default(12)->nullable()->comment('numero de columnas que tendra el contenido en un contenedor en contenido simple son 12');
-            $table->tinyInteger('content_colums_sons')->nullable()->comment('numero de columnas que tendra el contenido hijo en un contenedor o contenido simple');
+            $table->smallInteger('content_columns')->default(12)->nullable()->comment('numero de columnas que tendra el contenido en un contenedor en contenido simple son 12');
+            $table->tinyInteger('content_columns_sons')->nullable()->comment('numero de columnas que tendra el contenido hijo en un contenedor o contenido simple');
             $table->string('content_background_color')->nullable()->comment('color de fondo del contenido');
             $table->string('content_background_image')->nullable()->comment('ruta imagen de fondo del contenido');
             $table->tinyInteger('content_align')->default(0)->nullable()->comment('Alineación del contenido 0:izquierda,1:derecha,2:centro ');
-            $table->boolean('coontent_show_title')->default(false)->nullable()->comment('mostrar titulo del contenido');
+            $table->boolean('content_show_title')->default(false)->nullable()->comment('mostrar titulo del contenido');
             $table->tinyInteger('content_title_align')->default(0)->nullable()->comment('Alineación del titulo del contenido 0:izquierda,1:derecha,2:centro ');
             $table->tinyInteger('content_title_size')->default(0)->nullable()->comment('Tamaño del titulo del contenido 0:normal,1:grande,2:muy grande');
             $table->string('content_title')->comment(' titulo del contenido');
