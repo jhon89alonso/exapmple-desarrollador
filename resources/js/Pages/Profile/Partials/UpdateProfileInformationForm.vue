@@ -29,7 +29,7 @@ const form = useForm({
 </script>
 
 <template>
-    <section >
+    <section>
         <header class="flex justify-between">
             <h2 class="text-lg font-medium text-gray-900">
                 Información de perfil
@@ -38,12 +38,12 @@ const form = useForm({
             <p class="mt-1 text-sm text-gray-600">
                 Actualiza la información de contacto en tu cuenta
             </p>
-            <NavLink
+            <Link
                 :href="route('dashboard')"
-                class=" text-green-600 border border-green-600 px-8 py-2 rounded-md hover:bg-green-700 hover:text-white"
+                class="text-green-600 border border-green-600 px-8 py-2 rounded-md hover:bg-green-700 hover:text-white cursor-pointer"
             >
                 Inicio
-            </NavLink>
+            </Link>
         </header>
 
         <form
