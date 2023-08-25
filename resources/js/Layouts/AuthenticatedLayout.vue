@@ -39,7 +39,7 @@ const notShowAsideBar = () => {
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
                                     <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-gray-800"
+                                        class="block h-9 w-auto fill-current text-red-800"
                                     />
                                 </Link>
                             </div>
@@ -52,7 +52,7 @@ const notShowAsideBar = () => {
                                     :href="route('dashboard')"
                                     :active="route().current('dashboard')"
                                 >
-                                    Dashboard
+                                    Inicio
                                 </NavLink>
                             </div>
                         </div>
@@ -67,7 +67,12 @@ const notShowAsideBar = () => {
                                                 type="button"
                                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {{ $page.props.auth.user.name }}
+                                                {{
+                                                    $page.props.auth.user.name
+                                                }}-{{
+                                                    $page.props.auth.user
+                                                        .last_name
+                                                }}
 
                                                 <svg
                                                     class="ml-2 -mr-0.5 h-4 w-4"
@@ -89,14 +94,15 @@ const notShowAsideBar = () => {
                                         <DropdownLink
                                             :href="route('profile.edit')"
                                         >
-                                            Profile
+                                            <!-- Profile -->Perfil
                                         </DropdownLink>
                                         <DropdownLink
                                             :href="route('logout')"
                                             method="post"
                                             as="button"
                                         >
-                                            Log Out
+                                            <!-- Log Out -->
+                                            Salir
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>
@@ -159,7 +165,7 @@ const notShowAsideBar = () => {
                             :href="route('dashboard')"
                             :active="route().current('dashboard')"
                         >
-                            Dashboard
+                            <!-- Dashboard -->Inicio
                         </ResponsiveNavLink>
                     </div>
 
@@ -176,14 +182,14 @@ const notShowAsideBar = () => {
 
                         <div class="mt-3 space-y-1">
                             <ResponsiveNavLink :href="route('profile.edit')">
-                                Profile
+                                <!-- Profile -->Perfil
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 :href="route('logout')"
                                 method="post"
                                 as="button"
                             >
-                                Log Out
+                                <!-- Log Out -->Salir
                             </ResponsiveNavLink>
                         </div>
                     </div>
@@ -199,10 +205,12 @@ const notShowAsideBar = () => {
                             class="lg:inline-block p-2 bg-black rounded-md text-white"
                         >
                             <i class="fas fa-bars fa-spin fa-lg"></i>
-                            menu
+                            Menu
                         </button>
-                        <div><SearchForm /> </div>
-                        <div><slot name="header" /></div>
+                        <div><SearchForm /></div>
+                        <div class="hidden sm:block">
+                            <slot name="header" />
+                        </div>
                     </div>
                 </div>
             </header>

@@ -13,6 +13,11 @@ const form = useForm({
     email: "",
     password: "",
     password_confirmation: "",
+    type_document: "",
+    document: "",
+    phone: "",
+    id_area: "",
+    area: "",
 });
 
 const submit = () => {
@@ -79,6 +84,7 @@ const submit = () => {
                 <div class="flex">
                     <div class="flex items-center mr-4">
                         <input
+                        checked
                             id="radio-type_document"
                             type="radio"
                             :value="1"
@@ -107,7 +113,7 @@ const submit = () => {
                     </div>
                     <div class="flex items-center mr-4">
                         <input
-                            checked
+                            
                             id="inline-checked-radio"
                             type="radio"
                             :value="3"
@@ -137,6 +143,7 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.document" />
             </div>
+            
             <div class="mt-4">
                 <InputLabel for="password" value="Contraseña" />
 

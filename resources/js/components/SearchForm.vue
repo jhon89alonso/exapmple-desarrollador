@@ -1,16 +1,19 @@
 <template>
-    <div class="flex justify-between">
+    <div class="justify-between hidden sm:flex">
         <select
             id="id"
             v-model="computedValue"
             class="mx-1 px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full"
         >
-        <option disabled>test</option>
+            <option disabled>test</option>
 
-            <option v-for="(index, i) in [1, 2, 3, 4, 5]" :key="i" :value="index">
+            <option
+                v-for="(index, i) in [1, 2, 3, 4, 5]"
+                :key="i"
+                :value="index"
+            >
                 {{ index }}
             </option>
-          
         </select>
 
         <!-- <textarea
