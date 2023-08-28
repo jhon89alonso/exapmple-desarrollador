@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contens\ExternalContents;
 use App\Http\Requests\StoreExternalContentsRequest;
 use App\Http\Requests\UpdateExternalContentsRequest;
+use Inertia\Inertia;
 
 class ExternalContentsController extends Controller
 {
@@ -13,7 +14,8 @@ class ExternalContentsController extends Controller
      */
     public function index()
     {
-        //
+        // dd('external contents index');
+        return Inertia::render('external/ExternalContent');
     }
 
     /**

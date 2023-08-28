@@ -1,5 +1,5 @@
 <script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import AuthenticatedLayout from "@/Layouts/LayoutCMS.vue";
 import Menu from "@/Layouts/partials/menuAside/Menu.vue";
 import { Head, Link } from "@inertiajs/vue3";
 </script>
@@ -10,7 +10,7 @@ import { Head, Link } from "@inertiajs/vue3";
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Dashboard Cms
             </h2>
         </template>
 
@@ -23,11 +23,11 @@ import { Head, Link } from "@inertiajs/vue3";
                         class="flex rounded-md shadow-sm my-10 mx-4 py-5 px-3 border-double border-4"
                         role="group"
                     >
-                        <Link
-                            :href="route('cms')"
+                    <Link
+                        :href="route('external_content.index')"
                             class="relative px-3 inline-flex items-center justify-center mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-black hover:opacity-50 dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                         >
-                            CMS
+                            external_content
                         </Link>
                         <button
                             class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
