@@ -3,7 +3,7 @@
 use App\Http\Controllers\Dashboard\RoutesDashboardController;
 
 use App\Http\Controllers\ProfileController;
-use App\Models\Contens\ExternalContents;
+use App\Models\Contents\ExternalContents;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;

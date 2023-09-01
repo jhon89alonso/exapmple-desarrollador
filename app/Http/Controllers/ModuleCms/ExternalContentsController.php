@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\ModuleCms;
 
 use App\Http\Controllers\Controller;
-use App\Models\Contens\ExternalContents;
+use App\Models\Contents\ExternalContents;
 use App\Http\Requests\StoreExternalContentsRequest;
 use App\Http\Requests\UpdateExternalContentsRequest;
 use Inertia\Inertia;
