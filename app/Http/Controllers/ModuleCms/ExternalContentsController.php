@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ModuleCms;
 
+use App\Http\Controllers\Controller;
 use App\Models\Contens\ExternalContents;
 use App\Http\Requests\StoreExternalContentsRequest;
 use App\Http\Requests\UpdateExternalContentsRequest;
@@ -15,7 +16,7 @@ class ExternalContentsController extends Controller
     public function index()
     {
         // dd('external contents index');
-        return Inertia::render('external/ExternalContent');
+        return Inertia::render('ModuleCMS/external/ExternalContent');
     }
 
     /**

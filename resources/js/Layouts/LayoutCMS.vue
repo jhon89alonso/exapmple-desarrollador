@@ -30,7 +30,7 @@ const notShowAsideBar = () => {
 <template>
     <div>
         <div class="min-h-screen bg-red-50">
-            <nav class=" border-b border-gray-900">
+            <nav class="border-b border-gray-900">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -219,7 +219,9 @@ const notShowAsideBar = () => {
                             <i class="fas fa-bars fa-spin fa-lg"></i>
                             Menu
                         </button>
-                        <div><SearchForm /></div>
+                        <div>
+                            <SearchForm />
+                        </div>
                         <div class="hidden sm:block">
                             <slot name="header" />
                         </div>
