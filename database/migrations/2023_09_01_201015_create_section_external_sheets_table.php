@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('section_external_sheets', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();    
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

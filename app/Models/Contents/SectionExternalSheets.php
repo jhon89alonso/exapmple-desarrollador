@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SectionExternalSheets extends Model
 {
-    use HasFactory; use SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'description'
+    ];
+
     
 }
