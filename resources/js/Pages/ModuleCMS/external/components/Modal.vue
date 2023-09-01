@@ -15,6 +15,14 @@ const props = defineProps({
         type: Boolean,
         default: true,
     },
+    actionModal: {
+        type: String,
+        default: null,
+    },
+    titleModal: {
+        type: String,
+        default: null,
+    },
 });
 
 const emit = defineEmits(["close"]);
@@ -73,18 +81,25 @@ const maxWidthClass = computed(() => {
         <div class="modal-overlay"></div>
 
         <div
-            class="modal-container bg-gray-50 md:w-11/12 sm:w-full mx-auto p-6 rounded shadow-lg overflow-auto"
+            class="modal-container bg-gray-50 md:w-11/12 sm:w-full mx-auto rounded shadow-lg overflow-auto"
         >
-            <div class="modal-header">
-                <h2 class="text-xl font-semibold">Modal Title</h2>
+            <div class="modal-header bg-purple-100 py-2 pl-8 pr-2 w-full">
+                <h2 class="text-2xl font-semibold">{{ titleModal }}</h2>
                 <button @click="closeModal" class="modal-close">
                     <i class="fa-regular fa-circle-xmark fa-lg"></i>
                 </button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body mb-2">
                 <Form />
-                lorem
+            </div>
+            <div class="modal-footer bg-gray-400 pt-4 flex px-4">
+                <button
+                    @click="closeModal"
+                    class="relative inline-flex items-center text-red-800 justify-center mb-2 mr-2 overflow-hidden text-md font-medium px-5 py-2.5 transition-all ease-in duration-75 bg-white border-2 border-red-600 hover:text-red-600 rounded-md hover:border-3 hover:bg-opacity-50"
+                >
+                    Cerrar
+                </button>
             </div>
         </div>
     </div>
@@ -97,13 +112,24 @@ const maxWidthClass = computed(() => {
 }
 
 .modal-container {
-    max-height: 80vh;
+    max-height: 90vh;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.modal-body {
+    padding: 10px 20px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
 }
 
 .modal-close {
