@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\RoutesDashboardController;
-
+use App\Http\Controllers\ModuleCms\SectionExternalSheetsController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Contents\ExternalContents;
 use Illuminate\Foundation\Application;
@@ -46,4 +46,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'users'], function () {
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     // Route::resource('users', UserController::class);
     Route::resource('external_content', \App\Http\Controllers\ModuleCms\ExternalContentsController::class);
+    Route::resource('section_external_content', SectionExternalSheetsController::class);
 });
