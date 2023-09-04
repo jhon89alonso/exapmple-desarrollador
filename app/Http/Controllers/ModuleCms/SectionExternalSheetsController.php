@@ -17,7 +17,7 @@ class SectionExternalSheetsController extends Controller
         try {
             $sectionsSheets = SectionExternalSheets::all();
 
-            return response()->json(['msg' => 'success', 'data' => $sectionsSheets,'status'=> 200]);
+            return response()->json(['msg' => 'success', 'data' => $sectionsSheets, 'status' => 200]);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -36,11 +36,11 @@ class SectionExternalSheetsController extends Controller
      */
     public function store(StoreSectionExternalSheetsRequest $request)
     {
-    try {
+        try {
             $input = $request->all();
             // dd( $input);
             $sectionExternalSheets = SectionExternalSheets::create($input);
-            return response()->json(['msg' => 'success', 'data' => $sectionExternalSheets,'status'=> 200]);
+            return response()->json(['msg' => 'success', 'data' => $sectionExternalSheets, 'status' => 200]);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -65,9 +65,11 @@ class SectionExternalSheetsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSectionExternalSheetsRequest $request, SectionExternalSheets $sectionExternalSheets)
+    public function update(UpdateSectionExternalSheetsRequest $request,  $sectionExternalSheets)
     {
-        //
+        $sectionExternalSheets = SectionExternalSheets::find($sectionExternalSheets);
+        $sectionExternalSheets->update($request->all());
+        return response()->json(['msg' => 'El archivo se actualizo correctamente', 'status' => 200]);
     }
 
     /**

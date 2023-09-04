@@ -27,6 +27,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["close"]);
+const action = ref("");
 
 watch(
     () => props.show,
@@ -73,12 +74,53 @@ const maxWidthClass = computed(() => {
 });
 
 const form = ref({
+    id: "",
     name: "",
     description: "",
 });
+const cleanForm = () => {
+    form.value.id = null;
+    form.value.name = null;
+    form.value.description = null;
+    action.value = null
+};
 const sendForm = (event) => {
-    console.log("enviando");
-    axios.post('/admin/section_external_content',form.value)
+    console.log("enviando test");
+    let urlStore = `/admin/section_external_content`;
+    let urlUpdate = `/admin/section_external_content/${form.value.id}`;
+    // console.log(action);
+    if (action.value == "edit") {
+        console.log(urlUpdate);
+        axios
+            .put(urlUpdate, form.value)
+            .then((response) => {
+                console.log(response.data.msg);
+                response.msg;
+            })
+            .catch((errors) => console.log(errors));
+    }
+    if (action._value == "") {
+        // console.log(urlStore, form.value);
+        axios
+            .post(urlStore, form.value)
+            .then((response) => {
+                console.log('guardando');
+                console.log(response.data.msg);
+            })
+            .catch((errors) => console.log(errors));
+    }
+    cleanForm()
+};
+
+const sectionEdit = (item, actionPost) => {
+    action.value = actionPost;
+    form.value = {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+    };
+
+    console.log(form.id);
 };
 </script>
 
@@ -131,8 +173,8 @@ const sendForm = (event) => {
                     </div>
                 </div>
 
-                <div class=" pt-4">
-                    <TableSectionSheet />
+                <div class="pt-4">
+                    <TableSectionSheet @editSection="sectionEdit" />
                 </div>
             </div>
             <div class="modal-footer bg-yellow-400 pt-4 flex px-4">
