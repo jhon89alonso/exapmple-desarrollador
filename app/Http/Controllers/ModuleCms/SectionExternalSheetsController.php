@@ -14,7 +14,13 @@ class SectionExternalSheetsController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $sectionsSheets = SectionExternalSheets::all();
+
+            return response()->json(['msg' => 'success', 'data' => $sectionsSheets,'status'=> 200]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

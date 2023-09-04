@@ -1,6 +1,7 @@
 <script setup>
 import axios from "axios";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import TableSectionSheet from "./tables/TableSectionSheet.vue";
 
 const props = defineProps({
     show: {
@@ -128,6 +129,10 @@ const sendForm = (event) => {
                             placeholder="description"
                         />
                     </div>
+                </div>
+
+                <div class=" pt-4">
+                    <TableSectionSheet />
                 </div>
             </div>
             <div class="modal-footer bg-yellow-400 pt-4 flex px-4">
