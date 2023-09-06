@@ -1,5 +1,5 @@
 <template>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class=" overflow-x-auto shadow-md sm:rounded-lg">
         <table
             class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
         >
@@ -55,8 +55,9 @@ import { onMounted } from "vue";
 import { ref } from "vue";
 
 const sections = ref(null);
-const emit = defineEmits(["edit-section"]);
-onMounted(async () => {
+
+const emit = defineEmits(["edit-section", "clean-section-table"]);
+const sectionTable = onMounted(async () => {
     try {
         const response = await fetch(`/admin/section_external_content`);
         const values = await response.json();
@@ -67,7 +68,15 @@ onMounted(async () => {
 });
 const getSectionEdit = (value) => {
     let action = "edit";
-    console.log(value.id);
+    // console.log(value.id);
     emit("edit-section", value, action);
 };
+
+const cleanSectionTable = () => {
+    console.log("metodo hijo");
+    // sectionTable();
+    emit("clean-section-table");
+};
+
+defineExpose({cleanSectionTable,sectionTable})
 </script>

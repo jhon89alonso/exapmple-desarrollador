@@ -28,6 +28,7 @@ const props = defineProps({
 
 const emit = defineEmits(["close"]);
 const action = ref("");
+const tableSection = ref(null);
 
 watch(
     () => props.show,
@@ -82,15 +83,14 @@ const cleanForm = () => {
     form.value.id = null;
     form.value.name = null;
     form.value.description = null;
-    action.value = null
+    action.value = null;
 };
+
 const sendForm = (event) => {
-    console.log("enviando test");
     let urlStore = `/admin/section_external_content`;
     let urlUpdate = `/admin/section_external_content/${form.value.id}`;
     // console.log(action);
     if (action.value == "edit") {
-        console.log(urlUpdate);
         axios
             .put(urlUpdate, form.value)
             .then((response) => {
@@ -104,12 +104,13 @@ const sendForm = (event) => {
         axios
             .post(urlStore, form.value)
             .then((response) => {
-                console.log('guardando');
+                console.log("guardando");
                 console.log(response.data.msg);
             })
             .catch((errors) => console.log(errors));
     }
-    cleanForm()
+    cleanForm();
+    tableSection.value.sectionTable();
 };
 
 const sectionEdit = (item, actionPost) => {
@@ -119,8 +120,6 @@ const sectionEdit = (item, actionPost) => {
         name: item.name,
         description: item.description,
     };
-
-    console.log(form.id);
 };
 </script>
 
@@ -174,7 +173,10 @@ const sectionEdit = (item, actionPost) => {
                 </div>
 
                 <div class="pt-4">
-                    <TableSectionSheet @editSection="sectionEdit" />
+                    <TableSectionSheet
+                        @editSection="sectionEdit"
+                        ref="tableSection"
+                    />
                 </div>
             </div>
             <div class="modal-footer bg-yellow-400 pt-4 flex px-4">
@@ -209,6 +211,8 @@ const sectionEdit = (item, actionPost) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
 }
 .modal-body {
     padding: 10px 20px;
