@@ -2,6 +2,8 @@
 import axios from "axios";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import TableSectionSheet from "./tables/TableSectionSheet.vue";
+import { useForm, Field, defineRule } from "vee-validate";
+import * as Yup from "yup";
 
 const props = defineProps({
     show: {
@@ -79,6 +81,17 @@ const form = ref({
     name: "",
     description: "",
 });
+
+const { errors, handleSubmit, defineInputBinds } = useForm({
+    validationSchema: Yup.object({
+        name: Yup.string()
+            .nullable()
+            .min(3, "El nombre debe tener al menos 3 caracteres")
+            .max(50, "El nombre no debe contener más de 50 caracteres")
+            .required("El nombre es requerido"),
+    }),
+});
+
 const cleanForm = () => {
     form.value.id = null;
     form.value.name = null;
@@ -99,7 +112,7 @@ const sendForm = (event) => {
             })
             .catch((errors) => console.log(errors));
     }
-    if (action._value == "") {
+    if (action.value == null || action.value == "") {
         // console.log(urlStore, form.value);
         axios
             .post(urlStore, form.value)
@@ -151,6 +164,7 @@ const sectionEdit = (item, actionPost) => {
                             type="text"
                             id="name_section"
                             v-model="form.name"
+                            name="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="name"
                             required
