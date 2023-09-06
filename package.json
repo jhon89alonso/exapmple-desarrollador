@@ -25,6 +25,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.4.2",
         "@vee-validate/rules": "^4.11.3",
         "vee-validate": "^4.11.3",
-        "vue-sweetalert2": "^5.0.5"
+        "vue-sweetalert2": "^5.0.5",
+        "yup": "^1.2.0"
     }
 }
