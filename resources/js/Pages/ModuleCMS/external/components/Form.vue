@@ -5,31 +5,42 @@
                 <label
                     for="content_section"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_section</label
+                    >Seccion a mostrar</label
                 >
-                <input
-                    type="text"
+                <select
+                    v-model="form.content_section"
+                    name="content_section"
                     id="content_section"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_section"
-                    required
-                />
+                >
+                    <!-- <option value=""></option> -->
+                    <option
+                        v-for="(section, i) in sections"
+                        :value="section.id"
+                    >
+                        {{ section.name }}
+                    </option>
+                </select>
             </div>
             <div>
                 <label
                     for="content_type"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_type</label
+                    >Tipo de contenido</label
                 >
-                <input
-                    type="text"
+                <select
+                    v-model="form.content_type"
+                    name="content_type"
                     id="content_type"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_type"
-                    required
-                />
+                >
+                    <!-- <option value=""></option> -->
+                    <option v-for="(type, i) in contentsType" :value="type.id">
+                        {{ type.label }}
+                    </option>
+                </select>
             </div>
-            <div>
+            <div hidden>
                 <label
                     for="content_father"
                     class="block mb-2 text-sm font-medium text-gray-900"
@@ -37,13 +48,14 @@
                 >
                 <input
                     type="text"
+                    v-model="form.content_father"
                     id="content_father"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="content_father"
                     required
                 />
             </div>
-            <div>
+            <div hidden>
                 <label
                     for="content_grandson"
                     class="block mb-2 text-sm font-medium text-gray-900"
@@ -51,6 +63,7 @@
                 >
                 <input
                     type="tel"
+                    v-model="form.content_grandson"
                     id="content_grandson"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="content_grandson"
@@ -61,47 +74,81 @@
                 <label
                     for="content_columns"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_columns
+                    >Tamaño de contenedor
                 </label>
-                <input
-                    type="url"
+                <select
+                    v-model="form.content_columns"
+                    name="content_columns"
                     id="content_columns"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_columns"
-                    required
-                />
+                >
+                    <!-- <option value=""></option> -->
+                    <option
+                        v-for="(columns, i) in contentsColums"
+                        :value="columns.id"
+                    >
+                        {{ columns.label }}
+                    </option>
+                </select>
             </div>
             <div>
                 <label
                     for="content_columns_sons"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_columns_sons</label
+                    >Número de columnas de contenedor</label
                 >
-                <input
-                    type="number"
+                <select
+                    v-model="form.content_columns_sons"
+                    name="content_columns_sons"
                     id="content_columns_sons"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_columns_sons"
-                    required
-                />
+                >
+                    <!-- <option value=""></option> -->
+                    <option
+                        v-for="(columnsSon, i) in contentsColumsSons"
+                        :value="columnsSon.id"
+                    >
+                        {{ columnsSon.label }}
+                    </option>
+                </select>
             </div>
-        </div>
-        <div class="grid gap-6 mb-2 md:grid-cols-3">
-            <div class="my-1">
+            <div class="">
                 <label
-                    for="email"
+                    for="content_align"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_background_color</label
+                    >Alineación de contenido
+                </label>
+                <select
+                    v-model="form.content_align"
+                    name="content_align"
+                    id="content_align"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                >
+                    <!-- <option value=""></option> -->
+                    <option
+                        v-for="(align, i) in contentAlign"
+                        :value="align.id"
+                    >
+                        {{ align.label }}
+                    </option>
+                </select>
+            </div>
+            <div class="">
+                <label
+                    for="content_background_color"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Color de fondo</label
                 >
                 <input
-                    type="email"
+                    type="color"
+                    v-model="form.content_background_color"
                     id="content_background_color"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="content_background_color"
                     required
                 />
             </div>
-            <div class="my-1">
+            <div class="">
                 <label
                     for="content_background_image"
                     class="block mb-2 text-sm font-medium text-gray-900"
@@ -115,79 +162,88 @@
                     required
                 />
             </div>
-            <div class="my-1">
+        </div>
+        <div class="grid gap-6 mb-2 md:grid-cols-3"></div>
+        <div class="grid gap-6 mb-6 md:grid-cols-3">
+            <div class="my-1 col-span-2">
                 <label
-                    for="content_align"
+                    for="content_title"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_align
-                </label>
+                    >Titulo</label
+                >
                 <input
-                    type="password"
-                    id="content_align"
+                    type="text"
+                    id="content_title"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="•••••••••"
+                    placeholder="Ejem: La vida es bella"
                     required
                 />
             </div>
+            <div class="my-5">
+                <label
+                    class="relative inline-flex items-center cursor-pointer"
+                    for="content_show_title"
+                >
+                    <input
+                        v-model="form.content_show_title"
+                        id="content_show_title"
+                        type="checkbox"
+                        value=""
+                        class="sr-only peer"
+                        checked
+                    />
+                    <div
+                        class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                    ></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900"
+                        >Mostar titulo</span
+                    >
+                </label>
+            </div>
+          
         </div>
         <div class="grid gap-6 mb-6 md:grid-cols-3">
             <div class="my-1">
                 <label
-                    for="content_show_title"
-                    class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_show_title</label
-                >
-                <input
-                    type="password"
-                    id="content_show_title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="•••••••••"
-                    required
-                />
-            </div>
-            <div class="my-1">
-                <label
                     for="content_title_align"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_title_align
+                    >Alineación de Titulo
                 </label>
-                <input
-                    type="password"
-                    id="content_title_align"
+                <select
+                    v-model="form.content_title_align"
+                    name="content_align"
+                    id="content_align"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="•••••••••"
-                    required
-                />
+                >
+                    <!-- <option value=""></option> -->
+                    <option
+                        v-for="(align, i) in contentAlign"
+                        :value="align.id"
+                    >
+                        {{ align.label }}
+                    </option>
+                </select>
             </div>
             <div class="my-1">
                 <label
                     for="content_title_size"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_title_size</label
-                >
-                <input
-                    type="email"
+                    >Tamaño de Fuente titulo
+                </label>
+                <select
+                    v-model="form.content_title_size"
+                    name="content_title_size"
                     id="content_title_size"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_background_color"
-                    required
-                />
-            </div>
-        </div>
-        <div class="grid gap-6 mb-6 md:grid-cols-3">
-            <div class="my-1">
-                <label
-                    for="content_title"
-                    class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_title</label
                 >
-                <input
-                    type="password"
-                    id="content_title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="•••••••••"
-                    required
-                />
+                    <!-- <option value=""></option> -->
+                    <option
+                        v-for="(size, i) in contentTitleSize"
+                        :value="size.id"
+                    >
+                        {{ size.label }}
+                    </option>
+                </select>
             </div>
             <div class="my-1">
                 <label
@@ -332,7 +388,26 @@
     </form>
 </template>
 <script setup>
+import { onMounted } from "vue";
 import { ref } from "vue";
+import {
+    contentsType,
+    contentsColums,
+    contentsColumsSons,
+    contentAlign,
+    contentTitleSize,
+} from "@/helpers/ContentsExternal";
+
+const sections = ref(null);
+const getSection = onMounted(async () => {
+    try {
+        const response = await fetch(`/admin/section_external_content`);
+        const values = await response.json();
+        sections.value = values.data;
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 const form = ref({
     content_section: "",
