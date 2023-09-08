@@ -200,7 +200,6 @@
                     >
                 </label>
             </div>
-          
         </div>
         <div class="grid gap-6 mb-6 md:grid-cols-3">
             <div class="my-1">
@@ -245,76 +244,90 @@
                     </option>
                 </select>
             </div>
-            <div class="my-1">
-                <label
-                    for="content_intro"
-                    class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_intro
-                </label>
-                <input
-                    type="password"
-                    id="content_intro"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_intro"
-                    required
-                />
-            </div>
-            <div class="my-1">
-                <label
-                    for="content_description"
-                    class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_description</label
-                >
-                <input
-                    type="email"
-                    id="content_description"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_background_color"
-                    required
-                />
-            </div>
+        </div>
+        <div class="grid gap-6 mb-6">
+            <label class="block mb-2 text-sm font-medium text-gray-900"
+                >Introducción
+            </label>
+            <ckeditor :editor="editor" v-model="form.content_intro"></ckeditor>
+        </div>
+        <div class="grid gap-6 mb-6">
+            <label class="block mb-2 text-sm font-medium text-gray-900"
+                >Descripción
+            </label>
+            <ckeditor
+                :editor="editor"
+                rows="10"
+                v-model="form.content_description"
+            ></ckeditor>
+        </div>
+        <div class="grid gap-6 mb-6 md:grid-cols-3">
             <div class="my-1">
                 <label
                     for="content_url"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_url</label
+                    >URL</label
                 >
                 <input
-                    type="email"
+                    type="text"
                     id="content_url"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_background_color"
-                    required
+                    placeholder="Ejem: https://example.com"
                 />
             </div>
             <div class="my-1">
-                <label
-                    for="content_url_target"
-                    class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_url_target</label
+                <label class="block mb-2 text-sm font-medium text-gray-900"
+                    >Abrir enlace en:</label
                 >
-                <input
-                    type="email"
-                    id="content_url_target"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_background_color"
-                    required
-                />
+                <div class="flex" id="content_url_target">
+                    <div class="flex items-center mr-4">
+                        <input
+                            type="radio"
+                            v-model="form.content_url_target"
+                            :value="1"
+                            checked
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                        />
+                        <label class="ml-2 text-sm font-medium text-gray-900"
+                            >Nueva hoja
+                        </label>
+                    </div>
+                    <div class="flex items-center mr-4">
+                        <input
+                            type="radio"
+                            v-model="form.content_url_target"
+                            :value="2"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                        />
+                        <label class="ml-2 text-sm font-medium text-gray-900"
+                            >Hoja actual</label
+                        >
+                    </div>
+                </div>
             </div>
+
             <div class="my-1">
                 <label
+                    class="relative inline-flex items-center cursor-pointer"
                     for="content_show_image"
-                    class="block mb-2 text-sm font-medium text-gray-900"
-                    >content_show_image</label
                 >
-                <input
-                    type="email"
-                    id="content_show_image"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="content_background_color"
-                    required
-                />
+                    <input
+                        v-model="form.content_content_show_imageshow_title"
+                        id="content_show_image"
+                        type="checkbox"
+                        value=""
+                        class="sr-only peer"
+                        checked
+                    />
+                    <div
+                        class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                    ></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900"
+                        >Mostar imagen</span
+                    >
+                </label>
             </div>
+
             <div class="my-1">
                 <label
                     for="content_image"
@@ -326,7 +339,6 @@
                     id="content_image"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="content_background_color"
-                    required
                 />
             </div>
             <div class="my-1">
@@ -340,10 +352,9 @@
                     id="content_video"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="content_background_color"
-                    required
                 />
             </div>
-            <div class="my-1">
+            <div class="my-1" hidden>
                 <label
                     for="content_order"
                     class="block mb-2 text-sm font-medium text-gray-900"
@@ -354,7 +365,6 @@
                     id="content_order"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="content_background_color"
-                    required
                 />
             </div>
         </div>
@@ -390,6 +400,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { ref } from "vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {
     contentsType,
     contentsColums,
@@ -408,6 +419,9 @@ const getSection = onMounted(async () => {
         console.log(error);
     }
 });
+const editor = ref(ClassicEditor);
+
+const language = ref("es");
 
 const form = ref({
     content_section: "",
@@ -433,3 +447,8 @@ const form = ref({
     content_order: "",
 });
 </script>
+<style lang="css" scoped>
+.ck-editor .ck-editor__main .ck-content {
+    height: 500px !important;
+}
+</style>
